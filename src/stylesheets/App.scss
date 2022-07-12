@@ -1,4 +1,5 @@
-@import "../components/Header/header.module";
+@import "../components/Header/header.style";
+@import "../components/pages/Main/main.style";
 
 * {
   margin: 0;
@@ -13,4 +14,8 @@ a {
 }
 li {
   list-style: none;
+}
+.app-wrapper {
+  margin: 1rem;
+  text-align: center;
 }
