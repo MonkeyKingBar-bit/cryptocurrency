@@ -1,14 +1,18 @@
 import React from 'react';
 import { headCells } from '../../../constants/headCells';
-import { MainProps } from '../../../common/interface_type';
+import { MainProps } from '../../../models/interface_type';
+import { useAppDispatch } from '../../../hooks/redux';
+import { commonActions } from '../../../store/reducers/common';
 
 const Main: React.FC<MainProps> = (props: MainProps) => {
   const { currencyList } = props;
+  const dispatch = useAppDispatch();
+
   return (
     <table className="main">
       <thead>
         <tr className="main_table-head">
-          {headCells.map((cell) => <th key={cell.id}>{cell.title}</th>)}
+          { headCells.map((cell) => <th key={cell.id}>{cell.title}</th>) }
         </tr>
       </thead>
       <tbody>
@@ -23,7 +27,7 @@ const Main: React.FC<MainProps> = (props: MainProps) => {
             <td>{currency.volumeUsd24Hr}</td>
             <td>{currency.changePercent24Hr}</td>
             <td>
-              <button type="submit">+</button>
+              <button type="submit" onClick={() => dispatch(commonActions.modalActive())}>+</button>
             </td>
           </tr>
         ))}

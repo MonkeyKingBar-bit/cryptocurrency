@@ -14,3 +14,7 @@ export type Currency = {
 export interface MainProps {
     currencyList: Currency[];
 }
+
+export interface ModalProps {
+    children: any;
+}
