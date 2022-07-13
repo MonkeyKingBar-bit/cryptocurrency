@@ -6,42 +6,30 @@ const Header = () => {
   const { currencies } = useAppSelector((state) => state.currency);
 
   const priceNum = currencies.map((currency) => +currency.priceUsd);
-  // const maxPriceArr = [];
-  //
-  // priceNum.forEach((price) => {
-  //   const maxObj = currencies.reduce((prev, cur) => (+cur.priceUsd > +prev.priceUsd ? cur : prev), { priceUsd: -Infinity });
-  //
-  // });
-  //
-  // // если нужен индекс элемента массива
-  // const maxIndex = currencies.reduce((acc, curr, i) => (currencies[acc].priceUsd > curr.priceUsd ? acc : i), 0);
-
-  // console.log(maxObj, maxIndex);
-
   let max1 = 0;
   let max2 = 0;
   let max3 = 0;
-  const name = [];
+  let maxName1 = '';
+  let maxName2 = '';
+  let maxName3 = '';
 
   if (priceNum.length > 2) {
     currencies.forEach((currency) => {
-      if (+currency.priceUsd > max1) {
+      if (+currency.priceUsd > max1 && currency.name) {
         max3 = max2;
         max2 = max1;
         max1 = currency.priceUsd;
-        name.push(currency.name);
-      } else if (+currency.priceUsd > max2) {
+        maxName1 = currency.name;
+      } else if (+currency.priceUsd > max2 && currency.name) {
         max3 = max2;
         max2 = currency.priceUsd;
-        name.push(currency.name);
-      } else if (+currency.priceUsd > max3) {
+        maxName2 = currency.name;
+      } else if (+currency.priceUsd > max3 && currency.name) {
         max3 = currency.priceUsd;
-        name.push(currency.name);
+        maxName3 = currency.name;
       }
     });
   }
-
-  console.log(max1, max2, max3, name);
 
   return (
     <header className="header">
@@ -50,12 +38,33 @@ const Header = () => {
         <input type="checkbox" id="checkbox_toggle" />
         <label htmlFor="checkbox_toggle" className="header-items__hamburger">&#9776;</label>
         <div className="header-items__menu">
-          <li>Crypt1</li>
-          <li>Crypt1</li>
-          <li>Crypt1</li>
-          <li className="header_profile" onClick={() => dispatch(commonActions.modalActive())} aria-hidden="true">Profile</li>
+          <li>
+            <p>{maxName1}</p>
+            <p>
+              {`${Math.round(max1 * 100) / 100} `}
+              &#36;
+            </p>
+          </li>
+          <li>
+            <p>{maxName2}</p>
+            <p>
+              {`${Math.round(max2 * 100) / 100} `}
+              &#36;
+            </p>
+          </li>
+          <li>
+            <p>{maxName3}</p>
+            <p>
+              {`${Math.round(max3 * 100) / 100} `}
+              &#36;
+            </p>
+          </li>
+
         </div>
+
       </ul>
+      <div className="header_profile" onClick={() => dispatch(commonActions.modalActive())} aria-hidden="true">Profile</div>
+
     </header>
   );
 };
