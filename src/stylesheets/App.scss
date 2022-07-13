@@ -1,0 +1,22 @@
+@import "../components/Header/header.style";
+@import "../components/pages/Main/main.style";
+@import "../components/Modal/modal.style";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: cursive;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+.app-wrapper {
+  margin: 1rem;
+  text-align: center;
+}
