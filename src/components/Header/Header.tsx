@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { commonActions } from '../../store/reducers/common';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
@@ -33,7 +34,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="header_logo">CryptoCurrency</div>
+      <Link to="/"><div className="header_logo">CryptoCurrency</div></Link>
       <ul className="header-items">
         <input type="checkbox" id="checkbox_toggle" />
         <label htmlFor="checkbox_toggle" className="header-items__hamburger">&#9776;</label>

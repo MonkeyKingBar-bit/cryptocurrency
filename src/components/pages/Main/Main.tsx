@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
 import { headCells } from '../../../constants/headCells';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { commonActions } from '../../../store/reducers/common';
@@ -44,7 +45,7 @@ const Main = () => {
           {paginatedCurrencies.map((currency: any) => (
             <tr key={currency.id}>
               <td>{currency.rank}</td>
-              <td>{currency.name}</td>
+              <td><Link to="/details">{currency.name}</Link></td>
               <td>
                 &#36;
                 {` ${Math.round(currency.priceUsd * 100) / 100}`}

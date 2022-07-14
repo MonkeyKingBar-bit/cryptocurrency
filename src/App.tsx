@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
 import { fetchCurrencies } from './store/reducers/actionCreators';
@@ -12,27 +13,20 @@ const App = () => {
   const { isLoading, error } = useAppSelector((state) => state.currency);
   const modalSelector = useAppSelector((state) => state.common.isModalActive);
 
-  let component;
-  switch (window.location.pathname) {
-    case '/':
-      component = <Main />;
-      break;
-    case '/details':
-      component = <Details />;
-      break;
-  }
-
   useEffect(() => {
     dispatch((fetchCurrencies()));
   }, []);
 
   return (
-    <div>
+    <BrowserRouter>
       <Header />
       <div className="app-wrapper">
         {isLoading && <h1>Loading ...</h1>}
         {error && <h1>{error}</h1>}
-        {component}
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/details" element={<Details />} />
+        </Routes>
       </div>
       {modalSelector && (
       <Modal>
@@ -42,7 +36,7 @@ const App = () => {
         </form>
       </Modal>
       )}
-    </div>
+    </BrowserRouter>
   );
 };
 
