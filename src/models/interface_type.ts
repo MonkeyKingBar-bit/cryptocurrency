@@ -11,10 +11,6 @@ export type Currency = {
     explorer: string;
 }
 
-export interface MainProps {
-    currencyList: Currency[];
-}
-
 export interface ModalProps {
     children: any;
 }

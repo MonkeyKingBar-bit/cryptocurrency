@@ -59,11 +59,10 @@ const Header = () => {
               &#36;
             </p>
           </li>
-
+          <div className="header_profile" onClick={() => dispatch(commonActions.modalActive())} aria-hidden="true">Profile</div>
         </div>
 
       </ul>
-      <div className="header_profile" onClick={() => dispatch(commonActions.modalActive())} aria-hidden="true">Profile</div>
 
     </header>
   );
