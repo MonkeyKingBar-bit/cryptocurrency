@@ -32,37 +32,29 @@ const Header = () => {
     });
   }
 
+  const popularCrypt = [
+    { id: 1, maxValue: max1, maxName: maxName1 },
+    { id: 2, maxValue: max2, maxName: maxName2 },
+    { id: 3, maxValue: max3, maxName: maxName3 }];
+
   return (
     <header className="header">
-      <Link to="/"><div className="header_logo">CryptoCurrency</div></Link>
+      <Link to="/"><h2 className="header_logo">CryptoCurrency</h2></Link>
       <ul className="header-items">
         <input type="checkbox" id="checkbox_toggle" />
         <label htmlFor="checkbox_toggle" className="header-items__hamburger">&#9776;</label>
         <div className="header-items__menu">
-          <li>
-            <p>{maxName1}</p>
-            <p>
-              {`${Math.round(max1 * 100) / 100} `}
-              &#36;
-            </p>
-          </li>
-          <li>
-            <p>{maxName2}</p>
-            <p>
-              {`${Math.round(max2 * 100) / 100} `}
-              &#36;
-            </p>
-          </li>
-          <li>
-            <p>{maxName3}</p>
-            <p>
-              {`${Math.round(max3 * 100) / 100} `}
-              &#36;
-            </p>
-          </li>
+          {popularCrypt.map((m) => (
+            <li key={m.id}>
+              <p>{m.maxName}</p>
+              <p>
+                {`${Math.round(m.maxValue * 100) / 100} `}
+                &#36;
+              </p>
+            </li>
+          ))}
           <div className="header_profile" onClick={() => dispatch(commonActions.modalActive())} aria-hidden="true">Profile</div>
         </div>
-
       </ul>
 
     </header>
